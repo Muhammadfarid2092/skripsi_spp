@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nip_nis');
             $table->string('password');
             $table->string('role');
-            $table->char('kelas', 1)->nullable();
+            $table->char('kelas', 3)->nullable();
             $table->string('jenis_kelamin');
             $table->timestamps();
         });
