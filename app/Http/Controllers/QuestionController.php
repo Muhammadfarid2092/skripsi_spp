@@ -4,20 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class QuestionController extends Controller
 {
     public function index()
     {
-        return view('dashboard.user.user');
+        return view('dashboard.question.question');
     }
 
     public function create()
     {
-        return view('dashboard.user.create');
+        return view('dashboard.question.create');
     }
 
     public function edit()
     {
-        return view('dashboard.user.edit');
+        return view('dashboard.question.edit');
     }
 }

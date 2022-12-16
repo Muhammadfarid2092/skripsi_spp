@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sistem Penilaian Perilaku</title>
-
     <link rel="stylesheet" href="{{asset('mazer')}}/assets/css/main/app.css" />
-    <link rel="stylesheet" href="{{asset('mazer')}}/assets/css/main/app-dark.css" />
     <link
       rel="shortcut icon"
       href="{{asset('mazer')}}/assets/images/logo/favicon.svg"
@@ -35,7 +33,7 @@
       </div>
     </div>
 
-     <!-- Daftar Javascript -->
+    <!-- Daftar Javascript -->
     <script src="{{asset('mazer')}}/assets/js/bootstrap.js"></script>
     <script src="{{asset('mazer')}}/assets/js/app.js"></script> 
     <script src="{{asset('mazer')}}/assets/extensions/apexcharts/apexcharts.min.js"></script>
