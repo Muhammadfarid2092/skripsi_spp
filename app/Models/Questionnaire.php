@@ -8,12 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Questionnaire extends Model
 {
     use HasFactory;
+    
     protected $table = 'questionnaire';
-
-    public function grade()
-    {
-        return $this->belongsTo(Grade::class);
-    }
 
     public function question()
     {

@@ -15,11 +15,15 @@ return new class extends Migration
     {
         Schema::create('grade', function (Blueprint $table) {
             $table->id();
-            $table->string('grader');
-            $table->string('student');
-            $table->string('grade');
-            $table->unsignedBigInteger('user_id');
+            $table->integer('grade');
+            $table->unsignedBigInteger('penilai');
+            $table->unsignedBigInteger('dinilai');
+            $table->unsignedBigInteger('question_id');
             $table->timestamps();
+
+            $table->foreign('penilai')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('dinilai')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('question_id')->references('id')->on('question')->onDelete('cascade');
         });
     }
 

@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('questionnaire', function (Blueprint $table) {
             $table->id();
             $table->string('questionnaire');
-            $table->unsignedBigInteger('grade_id');
             $table->timestamps();
         });
     }

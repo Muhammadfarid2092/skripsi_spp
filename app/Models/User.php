@@ -41,12 +41,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function grade()
+
+    public function group()
+    {
+        return $this->hasMany(Group::class);
+    }
+
+    public function penilai()
     {
         return $this->hasMany(Grade::class);
     }
-    public function group()
+
+    public function dinilai()
     {
-        return $this->belongsTo(Group::class);
+        return $this->hasMany(Group::class);
     }
 }

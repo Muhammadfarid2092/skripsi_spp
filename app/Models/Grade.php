@@ -8,15 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Grade extends Model
 {
     use HasFactory;
-    protected $table = 'grade';
     
-    public function user()
+    protected $table = 'grade';
+
+    public function penilai()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function questionnaire()
+    public function dinilai()
     {
-        return $this->hasMany(Questionnaire::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function question()
+    {
+        return $this->belongsTo(Question::class);
     }
 }
