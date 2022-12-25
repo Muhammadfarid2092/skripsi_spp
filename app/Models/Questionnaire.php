@@ -11,6 +11,10 @@ class Questionnaire extends Model
     
     protected $table = 'questionnaire';
 
+    protected $fillable = [
+        'questionnaire'
+    ];
+
     public function question()
     {
         return $this->hasMany(Question::class);

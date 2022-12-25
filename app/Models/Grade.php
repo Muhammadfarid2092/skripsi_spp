@@ -11,6 +11,13 @@ class Grade extends Model
     
     protected $table = 'grade';
 
+    protected $fillable = [
+        'grade',
+        'penilai',
+        'dinilai',
+        'question_id'
+    ];
+
     public function penilai()
     {
         return $this->belongsTo(User::class);

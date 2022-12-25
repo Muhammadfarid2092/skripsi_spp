@@ -53,6 +53,7 @@
                     Hi, {{ ucwords(Auth::user()->nama) }}
                   </span>
                   <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{ route('dashboard.index') }}">Dashboard</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                       onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
                   </div>
@@ -159,6 +160,7 @@
 
   <!-- Global Init -->
   <script src="assets/js/custom.js"></script>
+  <script src="js/index.js"></script>
 
 </body>
 
