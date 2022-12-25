@@ -10,6 +10,7 @@
     <table class="table table-lg">
       <thead>
         <tr>
+          <th>No</th>
           <th>Nama</th>
           <th>NIS / NIP</th>
           <th>Role</th>
@@ -19,8 +20,9 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($data as $item)
+        @foreach ($data as $key => $item)
         <tr>
+          <td>{{  $key+1 }}</td>
           <td>{{ ucwords($item->nama) }}</td>
           <td>{{ $item->nip_nis }}</td>
           <td>{{ $item->role }}</td>
