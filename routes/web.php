@@ -4,7 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomepageController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuestionnaireController;
 use App\Http\Controllers\UserController;
@@ -21,12 +21,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Homepage Routing
 Route::get('/', [HomepageController::class, 'homepage'])->name('homepage');
 Route::get('/about', [HomepageController::class, 'about'])->name('about');
 Route::get('/contact', [HomepageController::class, 'contact'])->name('contact');
-Route::get('/login', [LoginController::class, 'login'])->name('login');
 
-Route::prefix('dashboard')->group(function () {
+// Custom Only Login Laravel UI
+
+// Auth::routes();
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Dashboard Routing yang mewajibkan harus login (Ada middleware Auth)
+Route::prefix('dashboard')->middleware('auth')->group(function () {
   Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard.index');
 
   Route::prefix('user')->group(function () {
