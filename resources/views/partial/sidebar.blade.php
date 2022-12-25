@@ -18,32 +18,31 @@
 
         <li class="sidebar-item">
           <a href="{{ route('dashboard.index') }}" class="sidebar-link">
-            <i class="bi bi-grid-fill"></i>
-            <span>Dashboard</span>
+            <i class="bi bi-house-door"></i>
+            <span>Halaman Dashboard</span>
           </a>
         </li>
         <li class="sidebar-item">
           <a href="{{ route('group.index') }}" class="sidebar-link">
-            <i class="bi bi-grid-fill"></i>
-            <span>Group</span>
+            <i class="bi bi-people-fill"></i>
+            <span>Olah Data Grup</span>
           </a>
         </li>
-        <li class="sidebar-item">
-          <a href="{{ route('questionnaire.index') }}" class="sidebar-link">
-            <i class="bi bi-grid-fill"></i>
-            <span>Questionnaire</span>
+        <li class="sidebar-item has-sub">
+          <a href="#" class="sidebar-link">
+            <i class="bi bi-question-square"></i>
+            <span>Olah Data Pertanyaan</span>
           </a>
-        </li>
-        <li class="sidebar-item">
-          <a href="{{ route('question.index') }}" class="sidebar-link">
-            <i class="bi bi-grid-fill"></i>
-            <span>Question</span>
-          </a>
+          <ul class="submenu">
+            <li class="submenu-item">
+              <a href="{{ route('question.index') }}">Daftar Pertanyaan</a>
+            </li>
+          </ul>
         </li>
         <li class="sidebar-item">
           <a href="{{ route('grade.index') }}" class="sidebar-link">
-            <i class="bi bi-grid-fill"></i>
-            <span>Grade</span>
+            <i class="bi bi-award"></i>
+            <span>Penilaian</span>
           </a>
         </li>
         <li class="sidebar-item">
@@ -52,21 +51,6 @@
             <span>Olah Data User</span>
           </a>
         </li>
-
-        {{-- <li class="sidebar-item has-sub">
-            <a href="#" class="sidebar-link">
-              <i class="bi bi-stack"></i>
-              <span>Contoh Menu Dropdown</span>
-            </a>
-            <ul class="submenu">
-              <li class="submenu-item">
-                <a href="component-alert.html">Alert</a>
-              </li>
-              <li class="submenu-item">
-                <a href="component-badge.html">Badge</a>
-              </li>
-            </ul>
-          </li> --}}
       </ul>
     </div>
   </div>

@@ -54,15 +54,21 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
   });
 
   Route::prefix('questionnaire')->group(function () {
-    Route::get('/', [QuestionnaireController::class, 'index'])->name('questionnaire.index');
+    // Route::get('/', [QuestionnaireController::class, 'index'])->name('questionnaire.index');
     Route::get('/create', [QuestionnaireController::class, 'create'])->name('questionnaire.create');
-    Route::get('/edit', [QuestionnaireController::class, 'edit'])->name('questionnaire.edit');
+    Route::post('/', [QuestionnaireController::class, 'store'])->name('questionnaire.store');
+    Route::get('/{id}/edit', [QuestionnaireController::class, 'edit'])->name('questionnaire.edit');
+    Route::put('/{id}', [QuestionnaireController::class, 'update'])->name('questionnaire.update');
+    Route::delete('/{id}', [QuestionnaireController::class, 'destroy'])->name('questionnaire.destroy');
   });
 
   Route::prefix('question')->group(function () {
     Route::get('/', [QuestionController::class, 'index'])->name('question.index');
     Route::get('/create', [QuestionController::class, 'create'])->name('question.create');
-    Route::get('/edit', [QuestionController::class, 'edit'])->name('question.edit');
+    Route::post('/', [QuestionController::class, 'store'])->name('question.store');
+    Route::get('/{id}/edit', [QuestionController::class, 'edit'])->name('question.edit');
+    Route::put('/{id}', [QuestionController::class, 'update'])->name('question.update');
+    Route::delete('/{id}', [QuestionController::class, 'destroy'])->name('question.destroy');
   });
 
   Route::prefix('grade')->group(function () {
