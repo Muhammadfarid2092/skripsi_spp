@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('nama_group');
             $table->unsignedBigInteger('user_id');
+            $table->integer('acakan_ke');
             $table->timestamps();
+
+            $table->unique(['nama_group', 'user_id', 'acakan_ke']);
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

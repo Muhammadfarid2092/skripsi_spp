@@ -49,8 +49,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
   Route::prefix('group')->group(function () {
     Route::get('/', [GroupController::class, 'index'])->name('group.index');
-    Route::get('/create', [GroupController::class, 'create'])->name('group.create');
-    Route::get('/edit', [GroupController::class, 'edit'])->name('group.edit');
+    Route::post('/', [GroupController::class, 'store'])->name('group.store');
+    Route::delete('/{acakan_ke}', [GroupController::class, 'destroy'])->name('group.destroy');
   });
 
   Route::prefix('questionnaire')->group(function () {
