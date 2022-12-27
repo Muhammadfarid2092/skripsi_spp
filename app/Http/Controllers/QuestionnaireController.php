@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Questionnaire;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class QuestionnaireController extends Controller
 {
@@ -14,11 +15,21 @@ class QuestionnaireController extends Controller
 
     public function create()
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         return view('dashboard.questionnaire.create');
     }
 
     public function store(Request $request)
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $request->validate([
             'questionnaire' => ['required', 'string', 'max:255'],
         ]);
@@ -45,6 +56,11 @@ class QuestionnaireController extends Controller
 
     public function edit($id)
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $questionnaire = Questionnaire::findOrFail($id);
 
         return view('dashboard.questionnaire.edit', compact(['questionnaire']));
@@ -52,6 +68,11 @@ class QuestionnaireController extends Controller
 
     public function update(Request $request, $id)
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $request->validate([
             'questionnaire' => ['required', 'string', 'max:255'],
         ]);
@@ -80,6 +101,11 @@ class QuestionnaireController extends Controller
 
     public function destroy($id)
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+        
         $questionnaire = Questionnaire::findOrFail($id);
         $questionnaire->delete();
 

@@ -75,6 +75,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', [GradeController::class, 'index'])->name('grade.index');
     Route::get('/create', [GradeController::class, 'create'])->name('grade.create');
     Route::post('/create', [GradeController::class, 'store'])->name('grade.store');
-    Route::get('/edit', [GradeController::class, 'edit'])->name('grade.edit');
+    // Route::get('/edit', [GradeController::class, 'edit'])->name('grade.edit');
   });
 });

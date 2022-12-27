@@ -6,12 +6,18 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function index()
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $idLogin = Auth::id();
         $data = DB::table('users')->where('id', '<>', $idLogin)->get();
         return view('dashboard.user.user', compact(['data']));
@@ -19,11 +25,21 @@ class UserController extends Controller
 
     public function create()
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         return view('dashboard.user.create');
     }
 
     public function store(Request $request)
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'nip_nis' => ['required', 'numeric', 'unique:users'],
@@ -60,12 +76,22 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $user = User::findOrFail($id);
         return view('dashboard.user.edit', compact(['user']));
     }
 
     public function update(Request $request, $id)
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'nip_nis' => ['required', 'numeric'],
@@ -117,6 +143,11 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $user = User::findOrFail($id);
         $user->delete();
 

@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class GroupController extends Controller
 {
     public function index()
     {
+        // Cek Jika Siswa Maka Tampilkan Error
+        if (Gate::allows('isSiswa')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $data = [];
         $banyaknyaAcakan = DB::table('group')->select('acakan_ke')->orderBy('acakan_ke')->groupBy('acakan_ke')->get();
 
@@ -42,6 +48,11 @@ class GroupController extends Controller
 
     public function store()
     {
+        // Cek Jika Siswa Maka Tampilkan Error
+        if (Gate::allows('isSiswa')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $dataSiswaAcakPerKelompok = $this->generate_group();
         $lastAcakanKe = DB::table('group')->orderBy('acakan_ke', 'desc')->first();
         if (is_null($lastAcakanKe)) {
@@ -69,6 +80,11 @@ class GroupController extends Controller
 
     public function destroy($acakan_ke)
     {
+        // Cek Jika Siswa Maka Tampilkan Error
+        if (Gate::allows('isSiswa')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $group = DB::table('group')->where('acakan_ke', '=', $acakan_ke)->delete();
 
         if ($group) {

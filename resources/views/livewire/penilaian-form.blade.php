@@ -30,10 +30,17 @@
                   <option value='' selected>Pilih Siswa yang Akan Dinilai...</option>
                   @foreach ($allUserByGroupAndAcakanKe as $item)
                     @if ($idLogin == $item['user_id'])
-                      <option class="text-success font-bold" value='{{ $item['user_id'] }}' {{ in_array($item['user_id'], $personFilled, true) ? 'disabled' : '' }}>{{ $item['nama'] }} (Diri
+                      <option
+                        class="text-success font-bold {{ in_array($item['user_id'], $personFilled, true) ? 'bg-disabled-option' : '' }}"
+                        value='{{ $item['user_id'] }}'
+                        {{ in_array($item['user_id'], $personFilled, true) ? 'disabled' : '' }}>{{ $item['nama'] }}
+                        (Diri
                         Sendiri)</option>
                     @else
-                      <option value='{{ $item['user_id'] }}' {{ in_array($item['user_id'], $personFilled, true) ? 'disabled' : '' }}>{{ $item['nama'] }} </option>
+                      <option class="{{ in_array($item['user_id'], $personFilled, true) ? 'bg-disabled-option' : '' }}"
+                        value='{{ $item['user_id'] }}'
+                        {{ in_array($item['user_id'], $personFilled, true) ? 'disabled' : '' }}>{{ $item['nama'] }}
+                      </option>
                     @endif
                   @endforeach
                 </select>
@@ -53,9 +60,9 @@
     <form class="form" action="{{ route('grade.store') }}" method="POST">
       @csrf
 
-      <input type="hidden" id="penilai" name="penilai" value="{{$idLogin}}">
-      <input type="hidden" id="dinilai" name="dinilai" value="{{$keyUserDinilai}}">
-      <input type="hidden" id="acakan_ke" name="acakan_ke" value="{{$keyAcakanKe}}">
+      <input type="hidden" id="penilai" name="penilai" value="{{ $idLogin }}">
+      <input type="hidden" id="dinilai" name="dinilai" value="{{ $keyUserDinilai }}">
+      <input type="hidden" id="acakan_ke" name="acakan_ke" value="{{ $keyAcakanKe }}">
 
       @for ($i = 0; $i < count($dataKuesioner); $i++)
         <div class="card m-0">
@@ -88,9 +95,7 @@
                           <input class="form-check-input m-0" type="radio"
                             name="{{ $dataKuesioner[$i]['sub_pertanyaan'] }}_{{ $j }}"
                             id="{{ $dataKuesioner[$i]['sub_pertanyaan'] }}_{{ $j }}_{{ $k }}"
-                            value={{ $k }}
-                            required
-                            >
+                            value={{ $k }} required>
                           <label class="form-check-label"
                             for="{{ $dataKuesioner[$i]['sub_pertanyaan'] }}_{{ $j }}_{{ $k }}">
                             {{ $k }}

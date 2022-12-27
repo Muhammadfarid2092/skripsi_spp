@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class QuestionController extends Controller
 {
     public function index()
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $result = [];
         $allQuestionnaire = DB::table('questionnaire')->orderBy('id')->get();
 
@@ -32,6 +38,11 @@ class QuestionController extends Controller
 
     public function create()
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $questionnaire = DB::table('questionnaire')->orderBy('id')->get();
 
         return view('dashboard.question.create', compact(['questionnaire']));
@@ -39,6 +50,11 @@ class QuestionController extends Controller
 
     public function store(Request $request)
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $request->validate([
             'question' => ['required', 'string', 'max:255'],
             'questionnaire_id' => ['required', 'numeric'],
@@ -67,6 +83,11 @@ class QuestionController extends Controller
 
     public function edit($id)
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $question = Question::findOrFail($id);
         $questionnaire = DB::table('questionnaire')->orderBy('id')->get();
 
@@ -75,6 +96,11 @@ class QuestionController extends Controller
 
     public function update(Request $request, $id)
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $request->validate([
             'question' => ['required', 'string', 'max:255'],
             'questionnaire_id' => ['required', 'numeric'],
@@ -105,6 +131,11 @@ class QuestionController extends Controller
 
     public function destroy($id)
     {
+        // Cek Jika Bukan Admin Maka Tampilkan Error
+        if (Gate::denies('isAdmin')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $question = Question::findOrFail($id);
         $question->delete();
 

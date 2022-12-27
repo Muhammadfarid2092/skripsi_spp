@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class GradeController extends Controller
 {
@@ -14,11 +15,21 @@ class GradeController extends Controller
 
     public function create()
     {
+        // Cek Jika Bukan Siwa Maka Tidak Diperbolehkan
+        if (Gate::denies('isSiswa')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         return view('dashboard.grade.create');
     }
 
     public function store(Request $request)
     {
+        // Cek Jika Bukan Siwa Maka Tidak Diperbolehkan
+        if (Gate::denies('isSiswa')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $allSubQuestion = DB::table('questionnaire')->select('questionnaire')->orderBy('id')->get();
         $editedSubQuestion = [];
         

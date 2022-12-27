@@ -22,12 +22,15 @@
             <span>Halaman Dashboard</span>
           </a>
         </li>
+        @if (Auth::user()->role == 'guru' || Auth::user()->role == 'admin')
         <li class="sidebar-item">
           <a href="{{ route('group.index') }}" class="sidebar-link">
             <i class="bi bi-people-fill"></i>
             <span>Olah Data Grup</span>
           </a>
         </li>
+        @endif
+        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'siswa')
         <li class="sidebar-item has-sub">
           <a href="#" class="sidebar-link">
             <i class="bi bi-question-square"></i>
@@ -35,11 +38,16 @@
           </a>
           <ul class="submenu">
             <li class="submenu-item">
+              @if (Auth::user()->role == 'admin')
               <a href="{{ route('question.index') }}">Daftar Pertanyaan</a>
+              @endif
+              @if (Auth::user()->role == 'siswa')
               <a href="{{ route('grade.create') }}">Kuesioner Penilaian</a>
+              @endif
             </li>
           </ul>
         </li>
+        @endif
         <li class="sidebar-item has-sub">
           <a href="#" class="sidebar-link">
             <i class="bi bi-award"></i>
@@ -51,12 +59,14 @@
             </li>
           </ul>
         </li>
+        @if (Auth::user()->role == 'admin')
         <li class="sidebar-item">
           <a href="{{ route('user.index') }}" class="sidebar-link">
             <i class="bi bi-person-bounding-box"></i>
             <span>Olah Data User</span>
           </a>
         </li>
+        @endif
       </ul>
     </div>
   </div>
