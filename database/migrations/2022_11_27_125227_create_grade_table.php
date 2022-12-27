@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('penilai');
             $table->unsignedBigInteger('dinilai');
             $table->unsignedBigInteger('question_id');
+            $table->integer('acakan_ke');
             $table->timestamps();
 
             $table->foreign('penilai')->references('id')->on('users')->onDelete('cascade');

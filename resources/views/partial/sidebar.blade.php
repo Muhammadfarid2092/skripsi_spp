@@ -36,14 +36,20 @@
           <ul class="submenu">
             <li class="submenu-item">
               <a href="{{ route('question.index') }}">Daftar Pertanyaan</a>
+              <a href="{{ route('grade.create') }}">Kuesioner Penilaian</a>
             </li>
           </ul>
         </li>
-        <li class="sidebar-item">
-          <a href="{{ route('grade.index') }}" class="sidebar-link">
+        <li class="sidebar-item has-sub">
+          <a href="#" class="sidebar-link">
             <i class="bi bi-award"></i>
             <span>Penilaian</span>
           </a>
+          <ul class="submenu">
+            <li class="submenu-item">
+              <a href="{{ route('grade.index') }}">Hasil Penilaian</a>
+            </li>
+          </ul>
         </li>
         <li class="sidebar-item">
           <a href="{{ route('user.index') }}" class="sidebar-link">

@@ -60,7 +60,7 @@
                     id="password"
                     class="form-control @error('password') is-invalid @enderror"
                     name="password"
-                    placeholder="Password"
+                    placeholder="Password (Minimal 8 Karakter)"
                     required
                   />
                 </div>

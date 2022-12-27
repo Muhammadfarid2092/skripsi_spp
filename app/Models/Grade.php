@@ -15,7 +15,8 @@ class Grade extends Model
         'grade',
         'penilai',
         'dinilai',
-        'question_id'
+        'question_id',
+        'acakan_ke'
     ];
 
     public function penilai()

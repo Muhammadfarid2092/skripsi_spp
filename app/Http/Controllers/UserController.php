@@ -77,6 +77,10 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         if (!is_null($request->password)) {
+            $request->validate([
+                'password' => ['required', 'string', 'min:8'],
+            ]);
+
             $user->update([
                 'nama' => $request->nama,
                 'nip_nis' => $request->nip_nis,

@@ -45,8 +45,8 @@
             <ul class="nav">
               <li class="scroll-to-section"><a href="{{ route('homepage') }}">Home</a></li>
               <li class="scroll-to-section"><a href="{{ route('grade.index') }}">Kuesioner</a></li>
-              <li class="scroll-to-section"><a href="{{ route('about') }}">About</a></li>
               <li class="scroll-to-section"><a href="{{ route('contact') }}">Contact</a></li>
+              <li class="scroll-to-section"><a href="{{ route('about') }}">About</a></li>
               @if (Auth::check())
                 <div class="dropdown">
                   <span class="dropdown-toggle dropdown-homepage" type="button" data-toggle="dropdown" aria-expanded="false">
