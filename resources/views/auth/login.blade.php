@@ -22,9 +22,9 @@
           <form action="{{ route('login') }}" method="POST">
             @csrf
             <div class="form-group position-relative has-icon-left mb-4">
-              <input type="text" class="form-control form-control-xl" placeholder="NIP / NIS"
-                @error('nip_nis') is-invalid @enderror" id="nip_nis" name="nip_nis" value="{{ old('nip_nis') }}"
-                required autocomplete="nip_nis" autofocus />
+              <input type="text" class="form-control form-control-xl @error('nip_nis') is-invalid @enderror"
+                placeholder="NIP / NIS" id="nip_nis" name="nip_nis" value="{{ old('nip_nis') }}" required
+                autocomplete="nip_nis" autofocus />
               <div class="form-control-icon">
                 <i class="bi bi-person"></i>
               </div>
@@ -33,8 +33,8 @@
               @include('partial.invalid-form', ['message' => $message])
             @enderror
             <div class="form-group position-relative has-icon-left mb-4">
-              <input type="password" class="form-control form-control-xl" placeholder="Password"
-                @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}" required
+              <input type="password" class="form-control form-control-xl @error('password') is-invalid @enderror"
+                placeholder="Password" id="password" name="password" value="{{ old('password') }}" required
                 autocomplete="password" autofocus />
               <div class="form-control-icon">
                 <i class="bi bi-shield-lock"></i>

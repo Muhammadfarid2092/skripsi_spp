@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             QuestionnaireSeeder::class,
             QuestionSeeder::class,
+            GroupTableSeeder::class,
+            GradeTableSeeder::class
         ]);
     }
 }

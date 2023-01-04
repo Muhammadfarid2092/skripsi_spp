@@ -38,7 +38,7 @@
                   >Sub Pertanyaan</label
                 >
                 <fieldset class="form-group">
-                  <select class="form-select" @error('questionnaire_id') is-invalid @enderror" id="questionnaire_id" name="questionnaire_id"
+                  <select class="form-select @error('questionnaire_id') is-invalid @enderror" id="questionnaire_id" name="questionnaire_id"
                   required>
                     <option value='' selected>Pilih Sub Pertanyaan...</option>
                     @foreach ($questionnaire as $item)

@@ -54,7 +54,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
   });
 
   Route::prefix('questionnaire')->group(function () {
-    // Route::get('/', [QuestionnaireController::class, 'index'])->name('questionnaire.index');
     Route::get('/create', [QuestionnaireController::class, 'create'])->name('questionnaire.create');
     Route::post('/', [QuestionnaireController::class, 'store'])->name('questionnaire.store');
     Route::get('/{id}/edit', [QuestionnaireController::class, 'edit'])->name('questionnaire.edit');
@@ -75,6 +74,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', [GradeController::class, 'index'])->name('grade.index');
     Route::get('/create', [GradeController::class, 'create'])->name('grade.create');
     Route::post('/create', [GradeController::class, 'store'])->name('grade.store');
-    // Route::get('/edit', [GradeController::class, 'edit'])->name('grade.edit');
+    Route::get('/teacher', [GradeController::class, 'index_teacher'])->name('grade.index_teacher');
+    Route::post('/teacher', [GradeController::class, 'store_teacher'])->name('grade.store_teacher');
   });
 });

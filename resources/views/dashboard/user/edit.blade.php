@@ -77,7 +77,7 @@
                     >Role</label
                   >
                   <fieldset class="form-group">
-                    <select class="form-select" @error('role') is-invalid @enderror" id="role" name="role"
+                    <select class="form-select @error('role') is-invalid @enderror" id="role" name="role"
                     required>
                       <option value='siswa' {{ $user->role == 'siswa' ? 'selected' : '' }}>Siswa</option>
                       <option value='guru' {{ $user->role == 'guru' ? 'selected' : '' }}>Guru</option>
@@ -113,7 +113,7 @@
                     >Jenis Kelamin</label
                   >
                   <fieldset class="form-group">
-                    <select class="form-select" @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin"
+                    <select class="form-select @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin"
                     required>
                       <option value='Laki-laki' {{ $user->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                       <option value='Perempuan' {{ $user->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>

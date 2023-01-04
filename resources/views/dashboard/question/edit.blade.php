@@ -18,18 +18,9 @@
             <div class="row">
               <div class="col-12">
                 <div class="form-group">
-                  <label for="question"
-                    >Pertanyaan</label
-                  >
-                  <input
-                    type="text"
-                    id="question"
-                    class="form-control @error('question') is-invalid @enderror"
-                    name="question"
-                    placeholder="Pertanyaan"
-                    required
-                    value='{{ $question->question }}'
-                  />
+                  <label for="question">Pertanyaan</label>
+                  <input type="text" id="question" class="form-control @error('question') is-invalid @enderror"
+                    name="question" placeholder="Pertanyaan" required value='{{ $question->question }}' />
                 </div>
                 @error('question')
                   @include('partial.invalid-form', ['message' => $message])
@@ -37,14 +28,14 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <label for="questionnaire_id"
-                    >Sub Pertanyaan</label
-                  >
+                  <label for="questionnaire_id">Sub Pertanyaan</label>
                   <fieldset class="form-group">
-                    <select class="form-select" @error('questionnaire_id') is-invalid @enderror" id="questionnaire_id" name="questionnaire_id"
-                    required>
+                    <select class="form-select @error('questionnaire_id') is-invalid @enderror" id="questionnaire_id"
+                      name="questionnaire_id" required>
                       @foreach ($questionnaire as $item)
-                      <option value='{{ $item->id }}' {{ $item->id == $question->questionnaire_id ? 'selected' : '' }}>{{ ucwords($item->questionnaire) }}</option>
+                        <option value='{{ $item->id }}'
+                          {{ $item->id == $question->questionnaire_id ? 'selected' : '' }}>
+                          {{ ucwords($item->questionnaire) }}</option>
                       @endforeach
                     </select>
                   </fieldset>
@@ -54,10 +45,7 @@
                 @enderror
               </div>
               <div class="col-12 d-flex justify-content-end">
-                <button
-                  type="submit"
-                  class="btn btn-primary me-1 mb-1"
-                >
+                <button type="submit" class="btn btn-primary me-1 mb-1">
                   Submit
                 </button>
               </div>

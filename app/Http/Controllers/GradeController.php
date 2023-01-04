@@ -79,8 +79,18 @@ class GradeController extends Controller
         return view('dashboard.grade.create');
     }
 
-    public function edit()
+    public function index_teacher()
     {
-        return view('dashboard.grade.edit');
+        // Cek Jika Siswa Maka Error (Guru / Admin Berhasil)
+        if (Gate::allows('isSiswa')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
+        return view('dashboard.grade.grade_teacher');
+    }
+
+    public function store_teacher(Request $request)
+    {
+        dd($request);
     }
 }

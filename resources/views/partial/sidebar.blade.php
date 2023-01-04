@@ -57,6 +57,11 @@
             <li class="submenu-item">
               <a href="{{ route('grade.index') }}">Hasil Penilaian</a>
             </li>
+            @if (Auth::user()->role == 'guru' || Auth::user()->role == 'admin')
+            <li class="submenu-item">
+              <a href="{{ route('grade.index_teacher') }}">Penilaian Guru</a>
+            </li>
+            @endif
           </ul>
         </li>
         @if (Auth::user()->role == 'admin')

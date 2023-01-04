@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\Gate;
 
 class QuestionnaireController extends Controller
 {
-    // public function index()
-    // {
-    //     return view('dashboard.questionnaire.questionnaire');
-    // }
-
     public function create()
     {
         // Cek Jika Bukan Admin Maka Tampilkan Error

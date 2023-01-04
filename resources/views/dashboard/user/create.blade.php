@@ -16,17 +16,9 @@
             <div class="row">
               <div class="col-12">
                 <div class="form-group">
-                  <label for="nama"
-                    >Nama</label
-                  >
-                  <input
-                    type="text"
-                    id="nama"
-                    class="form-control @error('nama') is-invalid @enderror"
-                    name="nama"
-                    placeholder="Nama"
-                    required
-                  />
+                  <label for="nama">Nama</label>
+                  <input type="text" id="nama" class="form-control @error('nama') is-invalid @enderror"
+                    name="nama" placeholder="Nama" required />
                 </div>
                 @error('nama')
                   @include('partial.invalid-form', ['message' => $message])
@@ -34,17 +26,9 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <label for="nip_nis"
-                    >NIP / NIS</label
-                  >
-                  <input
-                    type="text"
-                    id="nip_nis"
-                    class="form-control @error('nip_nis') is-invalid @enderror"
-                    name="nip_nis"
-                    placeholder="NIP / NIS"
-                    required
-                  />
+                  <label for="nip_nis">NIP / NIS</label>
+                  <input type="text" id="nip_nis" class="form-control @error('nip_nis') is-invalid @enderror"
+                    name="nip_nis" placeholder="NIP / NIS" required />
                 </div>
                 @error('nip_nis')
                   @include('partial.invalid-form', ['message' => $message])
@@ -52,17 +36,9 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <label for="password"
-                    >Password</label
-                  >
-                  <input
-                    type="password"
-                    id="password"
-                    class="form-control @error('password') is-invalid @enderror"
-                    name="password"
-                    placeholder="Password (Minimal 8 Karakter)"
-                    required
-                  />
+                  <label for="password">Password</label>
+                  <input type="password" id="password" class="form-control @error('password') is-invalid @enderror"
+                    name="password" placeholder="Password (Minimal 8 Karakter)" required />
                 </div>
                 @error('password')
                   @include('partial.invalid-form', ['message' => $message])
@@ -70,12 +46,10 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <label for="role"
-                    >Role</label
-                  >
+                  <label for="role">Role</label>
                   <fieldset class="form-group">
-                    <select class="form-select" @error('role') is-invalid @enderror" id="role" name="role"
-                    required>
+                    <select class="form-select @error('role') is-invalid @enderror" id="role" name="role"
+                      required>
                       <option value='' selected>Pilih Role...</option>
                       <option value='siswa'>Siswa</option>
                       <option value='guru'>Guru</option>
@@ -89,16 +63,9 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <label for="kelas"
-                    >Kelas <i>(Opsional)</i></label
-                  >
-                  <input
-                    type="text"
-                    id="kelas"
-                    class="form-control @error('kelas') is-invalid @enderror"
-                    name="kelas"
-                    placeholder="Kelas (Maksimal 3 Karakter)"
-                  />
+                  <label for="kelas">Kelas <i>(Opsional)</i></label>
+                  <input type="text" id="kelas" class="form-control @error('kelas') is-invalid @enderror"
+                    name="kelas" placeholder="Kelas (Maksimal 3 Karakter)" />
                 </div>
                 @error('kelas')
                   @include('partial.invalid-form', ['message' => $message])
@@ -106,12 +73,10 @@
               </div>
               <div class="col-12">
                 <div class="form-group">
-                  <label for="jenis_kelamin"
-                    >Jenis Kelamin</label
-                  >
+                  <label for="jenis_kelamin">Jenis Kelamin</label>
                   <fieldset class="form-group">
-                    <select class="form-select" @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin" name="jenis_kelamin"
-                    required>
+                    <select class="form-select @error('jenis_kelamin') is-invalid @enderror" id="jenis_kelamin"
+                      name="jenis_kelamin" required>
                       <option value='' selected>Pilih Jenis Kelamin...</option>
                       <option value='Laki-laki'>Laki-laki</option>
                       <option value='Perempuan'>Perempuan</option>
@@ -123,10 +88,7 @@
                 @enderror
               </div>
               <div class="col-12 d-flex justify-content-end">
-                <button
-                  type="submit"
-                  class="btn btn-primary me-1 mb-1"
-                >
+                <button type="submit" class="btn btn-primary me-1 mb-1">
                   Submit
                 </button>
               </div>

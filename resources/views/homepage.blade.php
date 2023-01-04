@@ -44,7 +44,6 @@
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
               <li class="scroll-to-section"><a href="{{ route('homepage') }}">Home</a></li>
-              <li class="scroll-to-section"><a href="{{ route('grade.index') }}">Kuesioner</a></li>
               <li class="scroll-to-section"><a href="{{ route('contact') }}">Contact</a></li>
               <li class="scroll-to-section"><a href="{{ route('about') }}">About</a></li>
               @if (Auth::check())
@@ -88,7 +87,7 @@
             data-scroll-reveal="enter left move 30px over 0.6s after 0.4s">
             <h4>Selamat Datang <br> SISTEM PENILAIAN PERILAKU SISWA ONLINE</h4>
             <p>Kuesioner kini bisa dilakukan dimana saja, kapan saja, secara online, tanpa perlu kertas</p>
-            <a href="{{ route('grade.index') }}" class="main-button-slider">Ikut Kuesioner Sekarang!</a>
+            <a href="{{ route('login') }}" class="main-button-slider">Ikut Kuesioner Sekarang!</a>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
             data-scroll-reveal="enter right move 30px over 0.6s after 0.4s">
