@@ -57,7 +57,7 @@ class User extends Authenticatable
 
     public function dinilai()
     {
-        return $this->hasMany(Group::class);
+        return $this->hasMany(Grade::class);
     }
 
     public function siswa()

@@ -9,6 +9,7 @@ class GradeStudent extends Component
 {
     public function render()
     {
+        // dd($this->calculate_grade());
         $allAcakanObj = DB::table('group')
             ->select('acakan_ke')
             ->orderBy('acakan_ke', 'asc')
