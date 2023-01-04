@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\Gate;
 
 class GradeController extends Controller
 {
-    public function index()
-    {
-        return view('dashboard.grade.grade');
-    }
-
     public function create()
     {
         // Cek Jika Bukan Siwa Maka Tidak Diperbolehkan
@@ -77,6 +72,16 @@ class GradeController extends Controller
             ]);
 
         return view('dashboard.grade.create');
+    }
+
+    public function index()
+    {
+        // Cek Jika Siswa Maka Error (Guru / Admin Berhasil)
+        if (Gate::denies('isSiswa')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
+        return view('dashboard.grade.grade');
     }
 
     public function index_teacher()

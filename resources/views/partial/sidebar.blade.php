@@ -30,7 +30,6 @@
           </a>
         </li>
         @endif
-        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'siswa')
         <li class="sidebar-item has-sub">
           <a href="#" class="sidebar-link">
             <i class="bi bi-question-square"></i>
@@ -38,7 +37,7 @@
           </a>
           <ul class="submenu">
             <li class="submenu-item">
-              @if (Auth::user()->role == 'admin')
+              @if (Auth::user()->role == 'guru' || Auth::user()->role == 'admin')
               <a href="{{ route('question.index') }}">Daftar Pertanyaan</a>
               @endif
               @if (Auth::user()->role == 'siswa')
@@ -47,19 +46,20 @@
             </li>
           </ul>
         </li>
-        @endif
         <li class="sidebar-item has-sub">
           <a href="#" class="sidebar-link">
             <i class="bi bi-award"></i>
             <span>Penilaian</span>
           </a>
           <ul class="submenu">
+            @if (Auth::user()->role == 'siswa')
             <li class="submenu-item">
-              <a href="{{ route('grade.index') }}">Hasil Penilaian</a>
+              <a href="{{ route('grade.index') }}">Hasil Nilai (Siswa)</a>
             </li>
+            @endif
             @if (Auth::user()->role == 'guru' || Auth::user()->role == 'admin')
             <li class="submenu-item">
-              <a href="{{ route('grade.index_teacher') }}">Penilaian Guru</a>
+              <a href="{{ route('grade.index_teacher') }}">Hasil Nilai (Guru)</a>
             </li>
             @endif
           </ul>

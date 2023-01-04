@@ -10,8 +10,8 @@ class QuestionnaireController extends Controller
 {
     public function create()
     {
-        // Cek Jika Bukan Admin Maka Tampilkan Error
-        if (Gate::denies('isAdmin')) {
+        // Cek Jika Siswa Maka Tampilkan Error
+        if (Gate::allows('isSiswa')) {
             abort(403, 'THIS ACTION IS UNAUTHORIZED.');
         }
 
@@ -20,8 +20,8 @@ class QuestionnaireController extends Controller
 
     public function store(Request $request)
     {
-        // Cek Jika Bukan Admin Maka Tampilkan Error
-        if (Gate::denies('isAdmin')) {
+        // Cek Jika Siswa Maka Tampilkan Error
+        if (Gate::allows('isSiswa')) {
             abort(403, 'THIS ACTION IS UNAUTHORIZED.');
         }
 
@@ -51,8 +51,8 @@ class QuestionnaireController extends Controller
 
     public function edit($id)
     {
-        // Cek Jika Bukan Admin Maka Tampilkan Error
-        if (Gate::denies('isAdmin')) {
+        // Cek Jika Siswa Maka Tampilkan Error
+        if (Gate::allows('isSiswa')) {
             abort(403, 'THIS ACTION IS UNAUTHORIZED.');
         }
 
@@ -63,8 +63,8 @@ class QuestionnaireController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Cek Jika Bukan Admin Maka Tampilkan Error
-        if (Gate::denies('isAdmin')) {
+        // Cek Jika Siswa Maka Tampilkan Error
+        if (Gate::allows('isSiswa')) {
             abort(403, 'THIS ACTION IS UNAUTHORIZED.');
         }
 
@@ -96,8 +96,8 @@ class QuestionnaireController extends Controller
 
     public function destroy($id)
     {
-        // Cek Jika Bukan Admin Maka Tampilkan Error
-        if (Gate::denies('isAdmin')) {
+        // Cek Jika Siswa Maka Tampilkan Error
+        if (Gate::allows('isSiswa')) {
             abort(403, 'THIS ACTION IS UNAUTHORIZED.');
         }
         
