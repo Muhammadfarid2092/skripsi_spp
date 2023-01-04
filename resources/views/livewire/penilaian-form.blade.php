@@ -33,13 +33,13 @@
                       <option
                         class="text-success font-bold {{ in_array($item['user_id'], $personFilled, true) ? 'bg-disabled-option' : '' }}"
                         value='{{ $item['user_id'] }}'
-                        {{ in_array($item['user_id'], $personFilled, true) ? '' : '' }}>{{ $item['nama'] }}
+                        {{ in_array($item['user_id'], $personFilled, true) ? 'disabled' : '' }}>{{ $item['nama'] }}
                         (Diri
                         Sendiri)</option>
                     @else
                       <option class="{{ in_array($item['user_id'], $personFilled, true) ? 'bg-disabled-option' : '' }}"
                         value='{{ $item['user_id'] }}'
-                        {{ in_array($item['user_id'], $personFilled, true) ? '' : '' }}>{{ $item['nama'] }}
+                        {{ in_array($item['user_id'], $personFilled, true) ? 'disabled' : '' }}>{{ $item['nama'] }}
                       </option>
                     @endif
                   @endforeach
