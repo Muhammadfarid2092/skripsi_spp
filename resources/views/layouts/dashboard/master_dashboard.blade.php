@@ -40,6 +40,7 @@
     <script src="{{asset('mazer')}}/assets/js/app.js"></script> 
     <script src="{{asset('mazer')}}/assets/extensions/apexcharts/apexcharts.min.js"></script>
     <script src="{{asset('mazer')}}/assets/js/pages/dashboard.js"></script>
+    @yield('custom-script')
     @livewireScripts
   </body>
 </html>

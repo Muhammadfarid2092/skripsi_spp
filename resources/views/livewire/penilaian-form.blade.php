@@ -33,13 +33,13 @@
                       <option
                         class="text-success font-bold {{ in_array($item['user_id'], $personFilled, true) ? 'bg-disabled-option' : '' }}"
                         value='{{ $item['user_id'] }}'
-                        {{ in_array($item['user_id'], $personFilled, true) ? 'disabled' : '' }}>{{ $item['nama'] }}
+                        {{ in_array($item['user_id'], $personFilled, true) ? '' : '' }}>{{ $item['nama'] }}
                         (Diri
                         Sendiri)</option>
                     @else
                       <option class="{{ in_array($item['user_id'], $personFilled, true) ? 'bg-disabled-option' : '' }}"
                         value='{{ $item['user_id'] }}'
-                        {{ in_array($item['user_id'], $personFilled, true) ? 'disabled' : '' }}>{{ $item['nama'] }}
+                        {{ in_array($item['user_id'], $personFilled, true) ? '' : '' }}>{{ $item['nama'] }}
                       </option>
                     @endif
                   @endforeach
@@ -57,6 +57,8 @@
   </div>
 
   @if ($toggleKuesioner)
+    <button class="btn btn-primary mb-3" onclick="refreshForm()">Refresh Form</button>
+
     <form class="form" action="{{ route('grade.store') }}" method="POST">
       @csrf
 
