@@ -59,7 +59,10 @@
             @endif
             @if (Auth::user()->role == 'guru' || Auth::user()->role == 'admin')
             <li class="submenu-item">
-              <a href="{{ route('grade.index_teacher') }}">Hasil Nilai (Guru)</a>
+              <a href="{{ route('grade.create_teacher') }}">Hasil Input Nilai (Guru)</a>
+            </li>
+            <li class="submenu-item">
+              <a href="{{ route('grade.index_teacher') }}">Hasil Semua Nilai Siswa</a>
             </li>
             @endif
           </ul>

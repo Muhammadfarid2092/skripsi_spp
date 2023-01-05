@@ -72,7 +72,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
   Route::prefix('grade')->group(function () {
     Route::get('/', [GradeController::class, 'index'])->name('grade.index');
-    Route::get('/teacher', [GradeController::class, 'index_teacher'])->name('grade.index_teacher');
+    Route::get('/', [GradeController::class, 'index_teacher'])->name('grade.index_teacher');
+    Route::get('/teacher/create', [GradeController::class, 'create_teacher'])->name('grade.create_teacher');
     Route::post('/teacher', [GradeController::class, 'store_teacher'])->name('grade.store_teacher');
 
     // Ini Halaman Kuesioner Penilaian Siswa

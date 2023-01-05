@@ -11,6 +11,7 @@ class GradeTeacher extends Component
     public $toggleForm;
     public $studentFilled;
     public $studentNotFilled;
+    public $studentCurrentTable;
 
     public function render()
     {
@@ -30,16 +31,29 @@ class GradeTeacher extends Component
             $this->toggleForm = true;
             $this->studentFilled = $this->studentFilledFunction($acakan_ke);
             $this->studentNotFilled = $this->studentNotFilledFunction($acakan_ke);
+            $this->studentCurrentTable = $this->studentNotFilledFunction($acakan_ke);
         } else {
             $this->toggleForm = false;
         }
     }
 
+    public function showStudentFilled($acakan_ke)
+    {
+        $this->studentCurrentTable = $this->studentFilledFunction($acakan_ke);
+    }
+
+    public function showStudentNotFilled($acakan_ke)
+    {
+        $this->studentCurrentTable = $this->studentNotFilledFunction($acakan_ke);
+    }
+
     protected function studentFilledFunction($acakan_ke)
     {
         $studentFilledDB = DB::table('grade_teacher')
-            ->select('siswa')
+            ->join('users', 'grade_teacher.siswa', '=', 'users.id')
+            ->select('nama', 'nip_nis', 'siswa')
             ->where('acakan_ke', '=', $acakan_ke)
+            ->orderBy('siswa')
             ->get();
 
         $studentFilled = $this->objectToArray($studentFilledDB);
@@ -58,7 +72,22 @@ class GradeTeacher extends Component
         
         $studentNotFilled = $this->objectToArray($studentNotFilledDB);
 
-        return $studentNotFilled;
+        $result = [];
+        $currentStudentFilled = $this->studentFilledFunction($acakan_ke);
+        $id = [];
+
+        foreach($currentStudentFilled as $item) {
+            $id[] = $item['siswa'];
+        }
+
+        foreach($studentNotFilled as $item) {
+            if ( !in_array($item['user_id'], $id, true) ) {
+                $result[] = $item;
+            }
+        }
+
+
+        return $result;
     }
 
     // Fungsi yang Mengubah Object ke Array
