@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
   <link rel="stylesheet" type="text/css" href="assets/css/templatemo-art-factory.css">
   <link rel="stylesheet" type="text/css" href="assets/css/owl-carousel.css">
-  <link rel="stylesheet" href="{{asset('css')}}/style.css" />
+  <link rel="stylesheet" href="{{ asset('css') }}/style.css" />
 
 </head>
 
@@ -39,7 +39,7 @@
         <div class="col-12">
           <nav class="main-nav">
             <!-- ***** Logo Start ***** -->
-            <a href="{{ route('homepage') }}" class="logo">UIN SUKA</a>
+            <a href="{{ route('homepage') }}" class="logo">SMAN 2 Banguntapan</a>
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
@@ -48,7 +48,8 @@
               <li class="scroll-to-section"><a href="{{ route('about') }}">About</a></li>
               @if (Auth::check())
                 <div class="dropdown">
-                  <span class="dropdown-toggle dropdown-homepage" type="button" data-toggle="dropdown" aria-expanded="false">
+                  <span class="dropdown-toggle dropdown-homepage" type="button" data-toggle="dropdown"
+                    aria-expanded="false">
                     Hi, {{ ucwords(Auth::user()->nama) }}
                   </span>
                   <div class="dropdown-menu">
@@ -114,7 +115,12 @@
             <h5>Metode Multi-Source Feedback</h5>
           </div>
           <div class="left-text">
-            <p>Multi Source Feedback adalah penilaian ini dirasakan cukup</p>
+            <p>Multi-Source Feedback adalah metode untuk mengumpulkan dan memberikan umpan balik kepada seseorang dari
+              banyak sumber, seperti teman teman sekelompok, guru, dan siswa. Umpan balik jenis ini dapat digunakan
+              untuk berbagai tujuan, termasuk evaluasi kinerja, pengembangan keterampilan, dan perencanaan karier.
+              Tujuan dari Multi-Source Feedback adalah memberikan pandangan yang luas dan menyeluruh tentang kekuatan
+              seseorang, area untuk peningkatan, dan efektivitas secara keseluruhan. Ini juga dapat digunakan untuk
+              mengidentifikasi adanya diskrepansi atau bias dalam umpan balik yang diberikan oleh satu sumber</p>
           </div>
         </div>
       </div>

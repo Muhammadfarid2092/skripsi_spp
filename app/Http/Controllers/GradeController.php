@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
@@ -27,9 +28,9 @@ class GradeController extends Controller
 
         $allSubQuestion = DB::table('questionnaire')->select('questionnaire')->orderBy('id')->get();
         $editedSubQuestion = [];
-        
+
         // Fungsi mengganti spasi menjadi underscore
-        foreach($allSubQuestion as $item) {
+        foreach ($allSubQuestion as $item) {
             $editedSubQuestion[] = str_replace(" ", "_", $item->questionnaire);
         }
 
@@ -38,9 +39,9 @@ class GradeController extends Controller
 
         // Menampung Semua Nilai Di dalam 1 Array
         $grade = [];
-        foreach($editedSubQuestion as $item) {
-            for($i = 0; $i <= 9; $i++) {
-                $selectedRequest = $item."_".$i;
+        foreach ($editedSubQuestion as $item) {
+            for ($i = 0; $i <= 9; $i++) {
+                $selectedRequest = $item . "_" . $i;
                 array_push($grade, $request->$selectedRequest);
             }
         }
@@ -55,7 +56,7 @@ class GradeController extends Controller
             'acakan_ke' => ['required', 'numeric'],
         ]);
 
-        for($i = 0; $i < count($request->question_id); $i++) {
+        for ($i = 0; $i < count($request->question_id); $i++) {
             DB::table('grade')->insert([
                 'penilai' => $request->penilai,
                 'dinilai' => $request->dinilai,
@@ -106,6 +107,11 @@ class GradeController extends Controller
 
     public function store_teacher(Request $request)
     {
+        // Cek Jika Siswa Maka Error (Guru / Admin Berhasil)
+        if (Gate::allows('isSiswa')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
         $request->validate([
             'acakan_ke' => ['required', 'numeric'],
             'siswa' => ['required', 'numeric'],
