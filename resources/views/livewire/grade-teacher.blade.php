@@ -2,7 +2,8 @@
   <div class="card m-0 my-2">
     <div class="card-body">
       <div class="card-content d-flex">
-        <a href="{{ route('grade.create_teacher') }}"><button class="btn btn-primary me-2">Form Penilaian Guru</button></a>
+        <a href="{{ route('grade.create_teacher') }}"><button class="btn btn-primary me-2">Form Penilaian
+            Guru</button></a>
         <a href="{{ route('grade.index_teacher') }}"><button class="btn btn-primary">Hasil Nilai Semua Siswa</button></a>
       </div>
     </div>
@@ -17,7 +18,7 @@
 
             <form class="form form-vertical" action="{{ route('grade.store_teacher') }}" method="POST">
               @csrf
-              
+
               <div class="form-body">
                 <div class="row">
                   <div class="col-12">
@@ -87,33 +88,65 @@
   </div>
 
   @if ($toggleForm)
-  <div class="card m-0 my-2">
-    <div class="card-body">
-      <div class="card-content d-flex">
-        <button class="btn btn-primary me-2" wire:click="showStudentNotFilled({{ $acakanKe }})">Daftar Siswa Belum Menilai</button>
-        <button class="btn btn-primary" wire:click="showStudentFilled({{ $acakanKe }})">Daftar Siswa Sudah Menilai</button>
-      </div>
-      <div class="table-responsive">
-        <table class="table table-lg">
-          <thead>
-            <tr>
-              <th>No</th>
-              <th>NIS</th>
-              <th>Nama</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach ($studentCurrentTable as $key => $item)
-            <tr>
-              <td>{{ $key + 1 }}</td>
-              <td>{{ $item['nip_nis'] }}</td>
-              <td>{{ $item['nama'] }}</td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
+    <div class="card m-0 my-2">
+      <div class="card-body">
+        <div class="card-content d-flex">
+          <button class="btn btn-primary me-2" wire:click="showStudentNotFilled({{ $acakanKe }})">Daftar Siswa
+            Belum Dinilai</button>
+          <button class="btn btn-primary me-2" wire:click="showStudentFilled({{ $acakanKe }})">Daftar Siswa Sudah
+            Dinilai</button>
+          <button class="btn btn-primary" wire:click="showGroupCantFilled({{ $acakanKe }})">Daftar Kelompok Belum
+            Bisa Dinilai</button>
+        </div>
+        @if ($toggleForm && $toggleTable)
+          <div class="table-responsive">
+            <table class="table table-lg">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>NIS</th>
+                  <th>Nama</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($studentCurrentTable as $key => $item)
+                  <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $item['nip_nis'] }}</td>
+                    <td>{{ $item['nama'] }}</td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        @endif
+
+        @if ($toggleForm && $toggleGroup)
+          @foreach ($dataGroupCantFilled as $item)
+            <p class="fw-bold my-2">{{ $item['nama_kelompok'] }}</p>
+            <div class="table-responsive">
+              <table class="table table-lg">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>NIS</th>
+                    <th>Nama</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach ($item['siswa'] as $key => $x)
+                    <tr>
+                      <td>{{ $key + 1 }}</td>
+                      <td>{{ $x['nip_nis'] }}</td>
+                      <td>{{ $x['nama'] }}</td>
+                    </tr>
+                  @endforeach
+                </tbody>
+              </table>
+            </div>
+          @endforeach
+        @endif
       </div>
     </div>
-  </div>
   @endif
 </div>
