@@ -10,7 +10,7 @@
                 wire:model="acakanKe" wire:key="acakanKe">
                 <option value='' selected>Pilih pembuatan grup keberapa...</option>
                 @foreach ($allAcakan as $item)
-                  <option value='{{ $item['acakan_ke'] }}'>{{ $item['acakan_ke'] }}</option>
+                  <option value='{{ $item['acakan_ke'] }}'>Uji ke-{{ $item['acakan_ke'] }}</option>
                 @endforeach
               </select>
             </fieldset>
@@ -31,11 +31,14 @@
                   @foreach ($allUserByGroupAndAcakanKe as $item)
                     @if ($idLogin == $item['user_id'])
                       <option
-                        class="text-success font-bold {{ in_array($item['user_id'], $personFilled, true) ? 'bg-disabled-option' : '' }}"
-                        value='{{ $item['user_id'] }}'
-                        {{ in_array($item['user_id'], $personFilled, true) ? 'disabled' : '' }}>{{ $item['nama'] }}
-                        (Diri
-                        Sendiri)</option>
+                        @if (in_array($item['user_id'], $personFilled, true) || count(array_diff($allUserByGroupAndAcakanKeExpectSelf, $personFilled)) != 0)
+                          class="text-success font-bold bg-disabled-option"
+                          disabled
+                        @else
+                          class="text-success font-bold"
+                        @endif
+                          value='{{ $item['user_id'] }}'>{{ $item['nama'] }}(Diri Sendiri)
+                      </option>
                     @else
                       <option class="{{ in_array($item['user_id'], $personFilled, true) ? 'bg-disabled-option' : '' }}"
                         value='{{ $item['user_id'] }}'

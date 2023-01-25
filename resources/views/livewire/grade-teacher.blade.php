@@ -15,30 +15,72 @@
         <div class="card-content">
           <div class="card-body">
             <p class="text-center font-bold">Form Input Penilaian</p>
-
-            <form class="form form-vertical" action="{{ route('grade.store_teacher') }}" method="POST">
-              @csrf
-
-              <div class="form-body">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="form-group">
-                      <label for="acakan_ke">Pembuatan Grup Keberapa</label>
-                      <fieldset class="form-group">
-                        <select class="form-select @error('acakanKe') is-invalid @enderror" id="acakan_ke"
-                          name="acakan_ke" required wire:model="acakanKe" wire:key="acakanKe">
-                          <option value='' selected>Pilih pembuatan grup keberapa...</option>
-                          @foreach ($allAcakan as $item)
-                            <option value='{{ $item['acakan_ke'] }}'>{{ $item['acakan_ke'] }}</option>
-                          @endforeach
-                        </select>
-                      </fieldset>
-                    </div>
-                    @error('acakanKe')
-                      @include('partial.invalid-form', ['message' => $message])
-                    @enderror
+            <div class="form-body">
+              <div class="row">
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="acakan_ke_dynamic">Pembuatan Grup Keberapa</label>
+                    <fieldset class="form-group">
+                      <select class="form-select @error('acakanKe') is-invalid @enderror" id="acakan_ke_dynamic"
+                        name="acakan_ke_dynamic" required wire:model="acakanKe" wire:key="acakanKe">
+                        <option value='' selected>Pilih pembuatan grup keberapa...</option>
+                        @foreach ($allAcakan as $item)
+                          <option value='{{ $item['acakan_ke'] }}'>{{ $item['acakan_ke'] }}</option>
+                        @endforeach
+                      </select>
+                    </fieldset>
                   </div>
-                  @if ($toggleForm)
+                  @error('acakanKe')
+                    @include('partial.invalid-form', ['message' => $message])
+                  @enderror
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @if ($toggleForm)
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="card m-0 my-2">
+          <div class="card-content">
+            <div class="card-body">
+              <p class="text-center font-bold">Input Otomatis (Nilai Sempurna)</p>
+              <form action="{{ route('grade.store_teacher_auto') }}" method="POST">
+                @csrf
+
+                <input type="hidden" name="acakan_ke" id="acakan_ke" value="{{ $acakanKe }}">
+                <div class="d-flex justify-content-center align-items-center">
+                  <button type="submit" class="btn btn-primary me-1 mb-1">
+                    Isi Data Otomatis
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  @endif
+
+  @if ($toggleForm)
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <div class="card m-0 my-2">
+          <div class="card-content">
+            <div class="card-body">
+              <p class="text-center font-bold">Input Manual</p>
+
+              <form class="form form-vertical" action="{{ route('grade.store_teacher_manual') }}" method="POST">
+                @csrf
+
+                <input type="hidden" name="acakan_ke" id="acakan_ke" value="{{ $acakanKe }}">
+                <div class="form-body">
+                  <div class="row">
                     <div class="col-12">
                       <div class="form-group">
                         <label for="siswa">Siswa</label>
@@ -77,15 +119,15 @@
                         </button>
                       </div>
                     </div>
-                  @endif
+                  </div>
                 </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  @endif
 
   @if ($toggleForm)
     <div class="card m-0 my-2">
@@ -98,7 +140,8 @@
           <button class="btn btn-primary" wire:click="showGroupCantFilled({{ $acakanKe }})">Daftar Kelompok Belum
             Bisa Dinilai</button>
         </div>
-        @if ($toggleForm && $toggleTable)
+
+        @if ($toggleForm && $toggleStudentNotFilled)
           <div class="table-responsive">
             <table class="table table-lg">
               <thead>
@@ -121,7 +164,36 @@
           </div>
         @endif
 
-        @if ($toggleForm && $toggleGroup)
+        @if ($toggleForm && $toggleStudentFilled)
+          <div class="table-responsive">
+            <table class="table table-lg">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>NIS</th>
+                  <th>Nama</th>
+                  <th>Nilai</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach ($studentCurrentTable as $key => $item)
+                  <tr>
+                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $item['nip_nis'] }}</td>
+                    <td>{{ $item['nama'] }}</td>
+                    <td>{{ $item['grade'] }}</td>
+                    <td>
+                      <a href="{{ route('grade.edit_teacher', ['id' => $item['gd_id'], 'acakan_ke' => $acakanKe]) }}">Edit</a>
+                    </td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        @endif
+
+        @if ($toggleForm && $toggleGroupCantFilled)
           @foreach ($dataGroupCantFilled as $item)
             <p class="fw-bold my-2">{{ $item['nama_kelompok'] }}</p>
             <div class="table-responsive">

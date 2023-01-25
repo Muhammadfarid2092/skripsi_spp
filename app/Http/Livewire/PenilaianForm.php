@@ -12,6 +12,7 @@ class PenilaianForm extends Component
     public $keyAcakanKe;
     public $keyUserDinilai;
     public $allUserByGroupAndAcakanKe;
+    public $allUserByGroupAndAcakanKeExpectSelf;
     public $personFilled;
     public $dataKuesioner;
 
@@ -45,6 +46,7 @@ class PenilaianForm extends Component
             $this->keyAcakanKe = $acakan_ke;
             $this->personFilled = $this->search_users_is_filled($acakan_ke);
             $this->allUserByGroupAndAcakanKe = $this->search_person_by_group_and_acakan_ke($acakan_ke);
+            $this->allUserByGroupAndAcakanKeExpectSelf = $this->users_group_expect_self($acakan_ke);
         } else {
             $this->toggleUserDinilai = false;
             $this->toggleKuesioner = false;
@@ -86,6 +88,22 @@ class PenilaianForm extends Component
         $dataToArray = $this->objectToArray($data);
 
         return $dataToArray;
+    }
+
+    protected function users_group_expect_self($acakan_ke)
+    {
+        $userLogin = Auth::id();
+
+        $result = [];
+
+        $data = $this->search_person_by_group_and_acakan_ke($acakan_ke);
+        foreach ($data as $item) {
+            if ($item['user_id'] != $userLogin) {
+                $result[] = $item['user_id'];
+            }
+        }
+
+        return $result;
     }
 
     protected function data_kuesioner()

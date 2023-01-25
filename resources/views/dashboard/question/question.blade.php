@@ -4,8 +4,8 @@
   @include('partial.notification')
 
   <h4 class="text-center mt-3">Halaman Olah Pertanyaan</h4>
+  <a href="{{ route('questionnaire.create') }}" class="btn btn-secondary rounded-pill my-3">Buat Kategori Baru</a>
   <a href="{{ route('question.create') }}" class="btn btn-secondary rounded-pill my-3">Buat Pertanyaan Baru</a>
-  <a href="{{ route('questionnaire.create') }}" class="btn btn-secondary rounded-pill my-3">Buat Sub Pertanyaan Baru</a>
   <h5 class="text-center">Daftar Semua Pertanyaan</h5>
   @foreach ($result as $key => $questionnaire)
   <div class="card m-0">
