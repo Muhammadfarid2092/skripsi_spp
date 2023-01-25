@@ -105,7 +105,39 @@ class GradeController extends Controller
         return view('dashboard.grade.grade_teacher');
     }
 
-    public function store_teacher(Request $request)
+    public function store_teacher_auto(Request $request)
+    {
+        // Cek Jika Siswa Maka Error (Guru / Admin Berhasil)
+        if (Gate::allows('isSiswa')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
+        $request->validate([
+            'acakan_ke' => ['required', 'numeric'],
+        ]);
+
+        DB::table('grade_teacher')->where('acakan_ke', '=', $request->acakan_ke)->delete();
+
+        $allSiswa = DB::table('users')
+            ->where('role', '=', 'siswa')
+            ->get();
+
+        foreach($allSiswa as $item) {
+            DB::table('grade_teacher')->insert([
+                'grade' => 10,
+                'siswa' => $item->id,
+                'acakan_ke' => $request->acakan_ke
+            ]);
+        }
+
+        return redirect()
+            ->route('grade.create_teacher')
+            ->with([
+                'success' => 'Nilai berhasil dibuat'
+            ]);
+    }
+
+    public function store_teacher_manual(Request $request)
     {
         // Cek Jika Siswa Maka Error (Guru / Admin Berhasil)
         if (Gate::allows('isSiswa')) {
@@ -136,6 +168,58 @@ class GradeController extends Controller
                 ->withInput()
                 ->with([
                     'error' => 'Nilai gagal dibuat'
+                ]);
+        }
+    }
+
+    public function edit_teacher($id, $acakan_ke)
+    {
+        // Cek Jika Siswa Maka Error (Guru / Admin Berhasil)
+        if (Gate::allows('isSiswa')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
+        $data = DB::table('grade_teacher')
+            ->join('users', 'grade_teacher.siswa', '=', 'users.id')
+            ->select('grade_teacher.id AS gd_id', 'nama', 'nip_nis', 'siswa', 'grade')
+            ->where('acakan_ke', '=', $acakan_ke)
+            ->where('grade_teacher.id', '=', $id)
+            ->orderBy('siswa')
+            ->get()[0];
+        $current_acakan_ke = $acakan_ke;
+
+        return view('dashboard.grade.edit_teacher', compact(['data', 'current_acakan_ke']));
+    }
+
+    public function update_teacher(Request $request, $id, $acakan_ke)
+    {
+        // Cek Jika Siswa Maka Error (Guru / Admin Berhasil)
+        if (Gate::allows('isSiswa')) {
+            abort(403, 'THIS ACTION IS UNAUTHORIZED.');
+        }
+
+        $request->validate([
+            'grade' => ['required', 'numeric'],
+        ]);
+
+        $data = DB::table('grade_teacher')
+            ->where('acakan_ke', '=', $acakan_ke)
+            ->where('id', '=', $id)
+            ->update(['grade' => $request->grade]);
+        
+
+        if ($data) {
+            return redirect()
+                ->route('grade.create_teacher')
+                ->with([
+                    'success' => 'Nilai berhasil diubah'
+                ]);
+        } else {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with([
+                    'error' => 'Nilai gagal diubah'
                 ]);
         }
     }

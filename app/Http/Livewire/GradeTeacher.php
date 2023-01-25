@@ -9,9 +9,9 @@ class GradeTeacher extends Component
 {
     public $acakanKe;
     public $toggleForm;
-    public $studentFilled;
-    public $toggleTable;
-    public $toggleGroup;
+    public $toggleStudentFilled;
+    public $toggleStudentNotFilled;
+    public $toggleGroupCantFilled;
     public $studentNotFilled;
     public $studentCurrentTable;
     public $dataGroupCantFilled;
@@ -32,35 +32,40 @@ class GradeTeacher extends Component
     {
         if (!empty($acakan_ke)) {
             $this->toggleForm = true;
-            $this->toggleTable = true;
-            $this->studentFilled = $this->studentFilledFunction($acakan_ke);
+            $this->toggleStudentNotFilled = true;
+            $this->toggleStudentFilled = false;
+            $this->toggleGroupCantFilled = false;
             $this->studentNotFilled = $this->studentNotFilledFunction($acakan_ke);
             $this->studentCurrentTable = $this->studentNotFilledFunction($acakan_ke);
         } else {
             $this->toggleForm = false;
-            $this->toggleTable = false;
-            $this->toggleGroup = false;
+            $this->toggleStudentNotFilled = false;
+            $this->toggleStudentFilled = false;
+            $this->toggleGroupCantFilled = false;
         }
     }
 
     public function showStudentFilled($acakan_ke)
     {
-        $this->toggleTable = true;
-        $this->toggleGroup = false;
+        $this->toggleStudentNotFilled = false;
+        $this->toggleStudentFilled = true;
+        $this->toggleGroupCantFilled = false;
         $this->studentCurrentTable = $this->studentFilledFunction($acakan_ke);
     }
 
     public function showStudentNotFilled($acakan_ke)
     {
-        $this->toggleTable = true;
-        $this->toggleGroup = false;
+        $this->toggleStudentNotFilled = true;
+        $this->toggleStudentFilled = false;
+        $this->toggleGroupCantFilled = false;
         $this->studentCurrentTable = $this->studentNotFilledFunction($acakan_ke);
     }
 
     public function showGroupCantFilled($acakan_ke)
     {
-        $this->toggleTable = false;
-        $this->toggleGroup = true;
+        $this->toggleStudentNotFilled = false;
+        $this->toggleStudentFilled = false;
+        $this->toggleGroupCantFilled = true;
         $this->dataGroupCantFilled = $this->groupCantFilledFunction($acakan_ke);
     }
 
@@ -68,7 +73,7 @@ class GradeTeacher extends Component
     {
         $studentFilledDB = DB::table('grade_teacher')
             ->join('users', 'grade_teacher.siswa', '=', 'users.id')
-            ->select('nama', 'nip_nis', 'siswa')
+            ->select('grade_teacher.id AS gd_id', 'nama', 'nip_nis', 'siswa', 'grade')
             ->where('acakan_ke', '=', $acakan_ke)
             ->orderBy('siswa')
             ->get();

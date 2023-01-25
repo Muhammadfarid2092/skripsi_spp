@@ -14,31 +14,31 @@
     </div>
     <div class="sidebar-menu">
       <ul class="menu">
-        <li class="sidebar-title">Menu</li>
+        <li class="sidebar-title fw-bold google-red">Menu</li>
 
         <li class="sidebar-item">
-          <a href="{{ route('dashboard.index') }}" class="sidebar-link">
-            <i class="bi bi-house-door"></i>
+          <a href="{{ route('dashboard.index') }}" class="sidebar-link google-yellow">
+            <i class="bi bi-house-door google-yellow"></i>
             <span>Halaman Dashboard</span>
           </a>
         </li>
         @if (Auth::user()->role == 'guru' || Auth::user()->role == 'admin')
         <li class="sidebar-item">
-          <a href="{{ route('group.index') }}" class="sidebar-link">
-            <i class="bi bi-people-fill"></i>
+          <a href="{{ route('group.index') }}" class="sidebar-link google-green">
+            <i class="bi bi-people-fill google-green"></i>
             <span>Olah Data Grup</span>
           </a>
         </li>
         @endif
         <li class="sidebar-item has-sub">
-          <a href="#" class="sidebar-link">
-            <i class="bi bi-question-square"></i>
-            <span>Olah Data Pertanyaan</span>
+          <a href="#" class="sidebar-link google-blue">
+            <i class="bi bi-question-square google-blue"></i>
+            <span>Daftar Pertanyaan</span>
           </a>
           <ul class="submenu">
             <li class="submenu-item">
               @if (Auth::user()->role == 'guru' || Auth::user()->role == 'admin')
-              <a href="{{ route('question.index') }}">Daftar Pertanyaan</a>
+              <a href="{{ route('question.index') }}">Pertanyaan</a>
               @endif
               @if (Auth::user()->role == 'siswa')
               <a href="{{ route('grade.create') }}">Kuesioner Penilaian</a>
@@ -47,8 +47,8 @@
           </ul>
         </li>
         <li class="sidebar-item has-sub">
-          <a href="#" class="sidebar-link">
-            <i class="bi bi-award"></i>
+          <a href="#" class="sidebar-link google-red">
+            <i class="bi bi-award google-red"></i>
             <span>Penilaian</span>
           </a>
           <ul class="submenu">
@@ -69,8 +69,8 @@
         </li>
         @if (Auth::user()->role == 'admin')
         <li class="sidebar-item">
-          <a href="{{ route('user.index') }}" class="sidebar-link">
-            <i class="bi bi-person-bounding-box"></i>
+          <a href="{{ route('user.index') }}" class="sidebar-link google-yellow">
+            <i class="bi bi-person-bounding-box google-yellow"></i>
             <span>Olah Data User</span>
           </a>
         </li>

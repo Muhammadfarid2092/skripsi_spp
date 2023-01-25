@@ -41,9 +41,16 @@
                   <tbody>
                     @foreach ($item['data'] as $banyaknyaGroup)
                       @foreach ($banyaknyaGroup['siswa'] as $key => $siswa)
+                      @if ($key == 0)
+                        <tr class="custom-border-top-group">
+                      @elseif ($key == count($banyaknyaGroup['siswa']) - 1)
+                        <tr class="custom-border-bottom-group">
+                      @else
                         <tr>
+                      @endif
                           @if ($key == 0)
-                          <td rowspan="{{ $banyaknyaGroup['banyak_orang_per_grup'] }}" class="text-center">{{ $banyaknyaGroup['nama_group'] }}</td>
+                            <td rowspan="{{ $banyaknyaGroup['banyak_orang_per_grup'] }}" class="text-center">
+                              {{ $banyaknyaGroup['nama_group'] }}</td>
                           @endif
                           <td style="width: 100%;">{{ $siswa->nama }}</td>
                         </tr>
