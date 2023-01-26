@@ -17,9 +17,11 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             QuestionnaireSeeder::class,
             QuestionSeeder::class,
-            GroupTableSeeder::class,
+            RevisiGroupTableSeeder::class,
             GradeTableSeeder::class,
-            GradeTeacherSeeder::class
+            RevisiGradeTableSeeder::class,
+            RevisiGradeTeacherTableSeeder::class
         ]);
+        // $this->call(RevisiGroupTableSeeder::class);
     }
 }
