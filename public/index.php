@@ -16,7 +16,7 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-if (file_exists($maintenance = __DIR__.'/../../repositories/skripsi_spp/storage/framework/maintenance.php')) {
+if (file_exists($maintenance = __DIR__.'/../spp/storage/framework/maintenance.php')) {
     require $maintenance;
 }
 // if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
@@ -33,7 +33,7 @@ if (file_exists($maintenance = __DIR__.'/../../repositories/skripsi_spp/storage/
 |
 */
 
-require __DIR__.'/../../repositories/skripsi_spp/vendor/autoload.php';
+require __DIR__.'/../spp/vendor/autoload.php';
 // require __DIR__.'/../vendor/autoload.php';
 
 /*
@@ -47,7 +47,7 @@ require __DIR__.'/../../repositories/skripsi_spp/vendor/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/../../repositories/skripsi_spp/bootstrap/app.php';
+$app = require_once __DIR__.'/../spp/bootstrap/app.php';
 // $app = require_once __DIR__.'/../bootstrap/app.php';
 
 $kernel = $app->make(Kernel::class);
